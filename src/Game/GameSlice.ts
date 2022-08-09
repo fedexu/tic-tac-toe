@@ -4,6 +4,7 @@ import { IGameState } from './IGameState';
 
 const initialState: IGameState = {
   history: [{
+    // squares:Array.from(Array(9).keys()).map(elem => { return elem + ''})
     squares: Array(9).fill(null),
   }],
   stepNumber: 0,
@@ -15,7 +16,7 @@ const initialState: IGameState = {
 function calculateWinner(
   action: AnyAction
 ): action is PayloadAction<number> {
-  return action.type === 'game/handleClick'; 
+  return action.type === 'game/handleClick' || action.type === 'game/jumpTo';
 }
 
 export const GameSlice = createSlice({

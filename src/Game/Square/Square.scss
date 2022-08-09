@@ -1,0 +1,22 @@
+.square-button {
+    font: 14px 'Ndot-55';
+}
+
+.square-button {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 34px;
+    height: 6rem;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 6rem;
+}
+
+.square-button:focus {
+    outline: none;
+}

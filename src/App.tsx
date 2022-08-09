@@ -6,16 +6,16 @@ import Home from "./Home/Home";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/" element={<Home />} >
-            </Route>
-            <Route path="/game" element={<Game />} >
-            </Route>
-          </Routes>
-        </div>
-      </Router>
+        <Router>
+          <div>
+            <Routes>
+              <Route path="/" element={<Home />} >
+              </Route>
+              <Route path="/game" element={<Game />} >
+              </Route>
+            </Routes>
+          </div>
+        </Router>
     </div>
   );
 }

@@ -1,23 +1,21 @@
+import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { restart } from "../Game/GameSlice";
 
 export function Home() {
     const dispatch = useAppDispatch();
+
     return (
-        <div className="home">Hello from home
-        
-        <nav>
-            <ul>
-                <li onClick={() => { dispatch(restart()) }}>
-                    <Link to="/">Home</Link>
-                </li>
-                <li onClick={() => { dispatch(restart()) }}>
-                    <Link to="/game">Game</Link>
-                </li>
-            </ul>
-        </nav>
-        </div>
+        <Container sx={{ flexGrow: 1 }}>
+            <Grid container justifyContent="center" alignItems="center">
+                <Grid item mobile={12} desktop={12} >
+                    <div onClick={() => { dispatch(restart()) }}>
+                        <Link to="/game">Game</Link>
+                    </div>
+                </Grid>
+            </Grid>
+        </Container>
     )
 }
 

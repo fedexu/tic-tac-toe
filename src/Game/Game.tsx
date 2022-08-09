@@ -1,6 +1,8 @@
 import { Board } from './Board/Board';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { jumpTo, selectHistory, selectWinner, selectXIsNexet } from './GameSlice';
+import { jumpTo, restart, selectHistory, selectWinner, selectXIsNexet } from './GameSlice';
+import './Game.scss';
+import { Link } from 'react-router-dom';
 
 export function Game() {
   const dispatch = useAppDispatch();
@@ -14,7 +16,7 @@ export function Game() {
       'Go to game start';
     return (
       <li key={move}>
-        <button onClick={() => dispatch(jumpTo(move))}>{desc}</button>
+        <button className="history-button" onClick={() => dispatch(jumpTo(move))}>{desc}</button>
       </li>
     );
   });
@@ -27,14 +29,17 @@ export function Game() {
   }
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board />
+    <div className='game'>
+      <div onClick={() => { dispatch(restart()) }}>
+        <Link to="/">Home</Link>
       </div>
-      <div className="game-info">
+
+      <Board />
+      <div className="miagrid">
         <div>{status}</div>
         <ol>{moves}</ol>
       </div>
+
     </div>
   );
 }

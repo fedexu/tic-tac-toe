@@ -1,21 +1,22 @@
-import { IBoardProps } from './IBoardProps';
+
 import { Square } from '../Square/Square';
 import { selectCurrent } from '../GameSlice';
 import { useSelector } from 'react-redux';
+import './Board.scss';
 
-export function Board(props: IBoardProps) {
+export function Board() {
 
   const current = useSelector(selectCurrent);
 
   const renderedSquares = current.squares.map((square, idx) => {
     return <Square key={idx}
       value={square}
-      id = {idx}
+      id={idx}
     />
   })
 
   return (
-    <div>
+    <div className='board'>
       <div className="board-row">
         {renderedSquares.slice(0, 3)}
       </div>
