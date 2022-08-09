@@ -50,7 +50,6 @@ export const GameSlice = createSlice({
       state.stepNumber = initialState.stepNumber;
       state.xIsNext = initialState.xIsNext;
       state.winner = initialState.winner;
-      state.credits = initialState.credits;
     },
   },
   extraReducers: (builder) => {
@@ -82,7 +81,7 @@ export const GameSlice = createSlice({
     },
 });
 
-export const { handleClick, jumpTo , restart} = GameSlice.actions;
+export const { handleClick, jumpTo , restart, addCredits} = GameSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -92,6 +91,7 @@ export const selectXIsNexet = (state: RootState) => state.game.xIsNext;
 export const selectHistory = (state: RootState) => state.game.history;
 export const selectCurrent = (state: RootState) => state.game.history[state.game.stepNumber];
 export const selectWinner = (state: RootState) => state.game.winner;
+export const selectCredit = (state: RootState) => state.game.credits;
 
 
 export default GameSlice.reducer;

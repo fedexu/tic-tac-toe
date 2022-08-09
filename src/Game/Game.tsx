@@ -2,13 +2,19 @@ import { Board } from './Board/Board';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { jumpTo, restart, selectHistory, selectWinner, selectXIsNexet } from './GameSlice';
 import './Game.scss';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
 export function Game() {
   const dispatch = useAppDispatch();
   const history = useAppSelector(selectHistory);
   const winner = useAppSelector(selectWinner);
   const xIsNexet = useAppSelector(selectXIsNexet)
+
+  const navigate = useNavigate();
+  const goToHome = useCallback(() => {
+    navigate('/', { replace: true })
+  }, [navigate]);
 
   const moves = history.map((step, move) => {
     const desc = move ?
@@ -31,7 +37,7 @@ export function Game() {
   return (
     <div className='game'>
       <div onClick={() => { dispatch(restart()) }}>
-        <Link to="/">Home</Link>
+        <button onClick={goToHome}>Home</button>
       </div>
 
       <Board />
