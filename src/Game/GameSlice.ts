@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AnyAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { IGameState } from './IGameState';
 
@@ -9,37 +9,20 @@ const initialState: IGameState = {
   stepNumber: 0,
   xIsNext: false,
   winner: null,
+  credits: 0,
 };
+
+function calculateWinner(
+  action: AnyAction
+): action is PayloadAction<number> {
+  return action.type === 'game/handleClick'; 
+}
 
 export const GameSlice = createSlice({
   name: 'game',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    calculateWinner: (state: IGameState) => {
-      const history = state.history.slice(0, state.stepNumber + 1);
-      const current = history[history.length - 1];
-      const squares = current.squares.slice();
-      const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
-      for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-          state.winner = squares[a]
-          return state;
-        }
-      }
-      state.winner = null;
-      return state;
-    },
     handleClick(state: IGameState, action: PayloadAction<number>) {
       const history = state.history.slice(0, state.stepNumber + 1);
       const current = history[history.length - 1];
@@ -58,10 +41,47 @@ export const GameSlice = createSlice({
       state.stepNumber = action.payload;
       state.xIsNext = (action.payload % 2) === 0;
     },
+    addCredits(state:IGameState){
+      state.credits += 1;
+    },
+    restart(state: IGameState){
+      state.history = initialState.history;
+      state.stepNumber = initialState.stepNumber;
+      state.xIsNext = initialState.xIsNext;
+      state.winner = initialState.winner;
+      state.credits = initialState.credits;
+    },
   },
+  extraReducers: (builder) => {
+      builder.addMatcher(calculateWinner, (state: IGameState) => {
+          const history = state.history.slice(0, state.stepNumber + 1);
+          const current = history[history.length - 1];
+          const squares = current.squares.slice();
+          const lines = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+          ];
+          for (let i = 0; i < lines.length; i++) {
+            const [a, b, c] = lines[i];
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+              state.winner = squares[a]
+              state.credits -= 1;
+              return state;
+            }
+          }
+          state.winner = null;
+          return state;
+        })
+    },
 });
 
-export const { calculateWinner, handleClick, jumpTo } = GameSlice.actions;
+export const { handleClick, jumpTo , restart} = GameSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

@@ -1,12 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.scss';
 import { Game } from './Game/Game'
+import Home from "./Home/Home";
 
 function App() {
   return (
     <div className="App">
-      <Game />
+      <Router>
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} >
+            </Route>
+            <Route path="/game" element={<Game />} >
+            </Route>
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }

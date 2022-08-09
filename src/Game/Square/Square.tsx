@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../app/hooks';
-import { calculateWinner, handleClick } from '../GameSlice';
+import { handleClick } from '../GameSlice';
 import { ISquareProps } from './ISquareProps';
 
 export function Square(props: ISquareProps) {
@@ -7,12 +7,9 @@ export function Square(props: ISquareProps) {
   return (
     <button
       className="square"
-      onClick={() => {
-        dispatch(handleClick(Number(props.id)));
-        dispatch(calculateWinner());
-      }}>
+      onClick={() => dispatch(handleClick(Number(props.id)))}>
       {props.value}
-    </button>
+    </button >
   );
 
 }

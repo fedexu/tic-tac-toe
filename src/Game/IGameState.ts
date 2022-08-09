@@ -3,6 +3,7 @@ export interface IGameState {
     xIsNext: Boolean;
     stepNumber: number;
     winner: String| null;
+    credits: number;
 }
 
 interface Squares {

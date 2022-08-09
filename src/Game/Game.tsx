@@ -1,11 +1,9 @@
-import { IGameProps } from './IGameProps';
 import { Board } from './Board/Board';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { calculateWinner, jumpTo, selectHistory, selectWinner, selectXIsNexet } from './GameSlice';
+import { jumpTo, selectHistory, selectWinner, selectXIsNexet } from './GameSlice';
 
-export function Game(props: IGameProps) {
+export function Game() {
   const dispatch = useAppDispatch();
-
   const history = useAppSelector(selectHistory);
   const winner = useAppSelector(selectWinner);
   const xIsNexet = useAppSelector(selectXIsNexet)
@@ -16,10 +14,7 @@ export function Game(props: IGameProps) {
       'Go to game start';
     return (
       <li key={move}>
-        <button onClick={() => {
-          dispatch(jumpTo(move));
-          dispatch(calculateWinner());
-        }}>{desc}</button>
+        <button onClick={() => dispatch(jumpTo(move))}>{desc}</button>
       </li>
     );
   });
