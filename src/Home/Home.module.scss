@@ -1,0 +1,94 @@
+@use "../mixin.scss" as mixin;
+.container {
+    display: grid;
+    grid-template-columns: 0.6fr 2fr 0.4fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: ". menu ." ". menu ." ". menu .";
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1.3fr 0.7fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: "game_logo game_logo game_logo" "menu_buttons menu_buttons menu_buttons" "menu_buttons menu_buttons menu_buttons";
+    grid-area: menu;
+}
+
+.game_logo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2.5fr 0.3fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: "game_logo_text game_logo_text game_logo_text" ". version ." ". . .";
+    grid-area: game_logo;
+}
+
+.version {
+    grid-area: version;
+}
+
+.game_logo_text {
+    grid-area: game_logo_text;
+}
+
+.menu_buttons {
+    display: grid;
+    grid-template-columns: 0.9fr 1.2fr 0.9fr;
+    grid-template-rows: 0.6fr 0.8fr 0.8fr 0.8fr 2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: ". . ." ". play_button ." ". add_credit_button ." ". about_button ." "Footer Footer Footer";
+    grid-area: menu_buttons;
+}
+
+.play_button {
+    grid-area: play_button;
+}
+
+.about_button {
+    grid-area: about_button;
+}
+
+.add_credit_button {
+    grid-area: add_credit_button;
+}
+
+.Footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1.7fr 0.8fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: ". . ." ". . credit_number" ". . .";
+    grid-area: Footer;
+}
+
+.credit_number {
+    grid-area: credit_number;
+}
+
+////////// custom ///////
+.game_logo h1 {
+    font-size: 2.4rem;
+    @include mixin.desktop {
+        font-size: 5rem;
+    }
+}
+
+.menu_buttons {
+    justify-content: center;
+    align-items: center;
+}
+
+.version {
+    font-size: 0.6rem;
+}
+
+.alert_div {
+    text-align: center
+}

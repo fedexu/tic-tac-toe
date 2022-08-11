@@ -1,20 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.scss';
+import styles from './App.module.scss';
 import { Game } from './Game/Game'
 import Home from "./Home/Home";
 
 function App() {
   return (
-    <div className="App">
+    <div className={`${styles.App}`}>
         <Router>
-          <div>
             <Routes>
               <Route path="/" element={<Home />} >
               </Route>
               <Route path="/game" element={<Game />} >
               </Route>
             </Routes>
-          </div>
         </Router>
     </div>
   );

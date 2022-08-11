@@ -1,9 +1,10 @@
 import { Board } from './Board/Board';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { jumpTo, restart, selectHistory, selectWinner, selectXIsNexet } from './GameSlice';
-import './Game.scss';
+import styles from './Game.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import { InputLabel, NativeSelect } from '@mui/material';
 
 export function Game() {
   const dispatch = useAppDispatch();
@@ -17,13 +18,8 @@ export function Game() {
   }, [navigate]);
 
   const moves = history.map((step, move) => {
-    const desc = move ?
-      'Go to move #' + move :
-      'Go to game start';
     return (
-      <li key={move}>
-        <button className="history-button" onClick={() => dispatch(jumpTo(move))}>{desc}</button>
-      </li>
+      <option key={move} value={move}>{move}</option>
     );
   });
 
@@ -35,17 +31,38 @@ export function Game() {
   }
 
   return (
-    <div className='game'>
-      <div onClick={() => { dispatch(restart()) }}>
-        <button onClick={goToHome}>Home</button>
+    <div className={`${styles.container}`}>
+      <div className={`${styles.home_button}`}>
+        <button onClick={() => { dispatch(restart()); goToHome() }}>Home</button>
       </div>
-
-      <Board />
-      <div className="miagrid">
-        <div>{status}</div>
-        <ol>{moves}</ol>
+      <div className={`${styles.game_area}`}>
+        <div className={`${styles.game_grid_area}`}>
+          <div className={`${styles.game_grid}`}>
+            <div className={`${styles.game_grid_item}`}>
+              <Board />
+            </div>
+          </div>
+        </div>
+        <div className={`${styles.info_area}`}>
+          <div className={`${styles.history}`}>
+            <InputLabel sx={{ font: "1rem 'Ndot-55'", color: 'black' }} variant="standard" htmlFor="uncontrolled-native">
+              Go to move:
+            </InputLabel>
+            <NativeSelect
+              sx={{ font: "1rem 'Ndot-55'", color: 'black' }}
+              defaultValue={0}
+              onChange={(event) => { dispatch(jumpTo(Number(event.target.value))) }}>
+              {moves}
+            </NativeSelect>
+          </div>
+          <div className={`${styles.next_player}`}>
+            {status}
+          </div>
+        </div>
       </div>
-
+      <div className={`${styles.next_player_desktop}`}>
+        {status}
+      </div>
     </div>
   );
 }

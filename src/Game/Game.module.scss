@@ -1,0 +1,129 @@
+@media (min-width:320px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 0.2fr 1.8fr 1fr;
+        gap: 2em 0px;
+        grid-auto-flow: row;
+    }
+    .home_button {
+        grid-area: 1 / 1 / 2 / 4;
+    }
+    .game_area {
+        grid-area: 2 / 1 / 4 / 4;
+    }
+    .game_grid_area {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "game_grid game_grid game_grid" "game_grid game_grid game_grid" "game_grid game_grid game_grid";
+        grid-area: 2 / 1 / 3 / 4;
+    }
+    .game_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "game_grid_item game_grid_item game_grid_item" "game_grid_item game_grid_item game_grid_item" "game_grid_item game_grid_item game_grid_item";
+        grid-area: game_grid;
+    }
+    .game_grid_item {
+        padding-left: 1.5rem;
+        grid-area: game_grid_item;
+    }
+    .info_area {
+        display: grid;
+        grid-template-columns: 0.6fr 2fr 0.4fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: ". next_player ." ". history ." ". history .";
+        grid-area: 3 / 1 / 4 / 4;
+    }
+    .history {
+        grid-area: history;
+    }
+    .next_player {
+        grid-area: next_player;
+    }
+    .next_player_desktop {
+        display: none;
+    }
+}
+
+@media (min-width:1025px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 0.2fr 1.8fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "home_button home_button home_button" "game_area game_area game_area" "game_area game_area game_area" ". next_player_desktop .";
+        row-gap: 2rem
+    }
+    .home_button {
+        grid-area: home_button;
+    }
+    .game_area {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "game_grid_area info_area";
+        grid-area: game_area;
+    }
+    .game_grid_area {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1.6fr 0.4fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "game_grid game_grid game_grid" "game_grid game_grid game_grid" ". . .";
+        grid-area: game_grid_area;
+    }
+    .game_grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.7fr 0fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: ". game_grid_item game_grid_item" ". game_grid_item game_grid_item" ". game_grid_item game_grid_item";
+        grid-area: game_grid;
+    }
+    .game_grid_item {
+        grid-area: game_grid_item;
+    }
+    .info_area {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: ". history ." ". history ." ". . .";
+        grid-area: info_area;
+    }
+    .history {
+        grid-area: history;
+    }
+    .next_player_desktop {
+        display: block;
+        grid-area: next_player_desktop;
+    }
+    .next_player {
+        display: none;
+    }
+}
+
+////////////////CUSTOM /////////////////////
+ol,
+ul {
+    padding-left: 30px;
+}
+
+.history_button {
+    font: 14px 'Ndot-55';
+}
