@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build Angular App
+    name: Build React App
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
