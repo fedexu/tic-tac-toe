@@ -36,7 +36,7 @@ export function Home() {
                 </div>
                 <div className={`${styles.menu_buttons}`}>
                     <div className={`${styles.play_button} ${styles.game_button}`}>
-                        <button onClick={() => { goToGame(credits); dispatch(restart()); }}>Game</button>
+                        <button onClick={() => { goToGame(credits); dispatch(restart()); }}>Play</button>
                     </div>
                     <div className={`${styles.add_credit_button} ${styles.game_button}`} >
                         <button onClick={() => { dispatch(addCredits()) }}>Add Credit</button>
