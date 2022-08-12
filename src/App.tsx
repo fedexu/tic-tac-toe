@@ -6,7 +6,7 @@ import Home from "./Home/Home";
 function App() {
   return (
     <div className={`${styles.App}`}>
-        <Router >
+        <Router basename="/tic-tac-toe">
             <Routes>
               <Route path="/" element={<Home />} >
               </Route>
