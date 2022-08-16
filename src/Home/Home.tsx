@@ -32,7 +32,7 @@ export function Home() {
             <div className={`${styles.menu}`}>
                 <div className={`${styles.game_logo}`}>
                     <div className={`${styles.game_logo_text}`}><h1>Tic-Tac-Toe</h1></div>
-                    <div className={`${styles.version}`}>Alpha Versions</div>
+                    <div className={`${styles.version}`}>Alpha Versions 0.0.1</div>
                 </div>
                 <div className={`${styles.menu_buttons}`}>
                     <div className={`${styles.play_button} ${styles.game_button}`}>
